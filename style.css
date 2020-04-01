@@ -7,6 +7,11 @@ html {
 
 h1 {
   color: #ff9441;
+  overflow: hidden;
+  white-space: nowrap;
+  font-style: oblique;
+  margin-left: -500px;
+  overflow: visible;
 }
 
 ul {
