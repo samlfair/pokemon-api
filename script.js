@@ -23,16 +23,21 @@ function printList(array) {
 }
 
 function moreDeetsOnClick(e) {
-  let pokeURL = e.target.getAttribute("data-url");
-  const gottaCatchEmAll = axios
-    .get(pokeURL)
-    .then(res => {
-      console.log(res.data);
-      addDeets(res.data, e.target);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+  if (e.target.parentNode.lastChild.nodeName === "H2") {
+    let pokeURL = e.target.getAttribute("data-url");
+    const gottaCatchEmAll = axios
+      .get(pokeURL)
+      .then(res => {
+        console.log(res.data);
+        addDeets(res.data, e.target);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  } else {
+    e.target.parentNode.removeChild(e.target.parentNode.lastChild);
+    e.target.parentNode.removeChild(e.target.parentNode.lastChild);
+  }
 }
 
 function addDeets(res, node) {
