@@ -10,8 +10,10 @@ h1 {
   overflow: hidden;
   white-space: nowrap;
   font-style: oblique;
-  margin-left: -500px;
-  overflow: visible;
+  width: 110%;
+  margin-left: -10%;
+  overflow: hidden;
+  text-align: centerl;
 }
 
 ul {
