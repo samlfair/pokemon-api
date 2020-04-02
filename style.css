@@ -12,10 +12,15 @@ h1 {
   font-style: oblique;
   width: 110%;
   margin-left: -10%;
-  overflow: hidden;
+  overflow-x: scroll;
   text-align: center;
   display: flex;
   align-items: center;
+  margin-bottom: -5px;
+}
+
+h1::-webkit-scrollbar {
+  display: none;
 }
 
 h1 img {
