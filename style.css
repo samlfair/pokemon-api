@@ -108,3 +108,52 @@ hr {
   border-bottom: 4px solid lightblue;
   margin-bottom: 1px;
 }
+
+ul > p {
+  padding: 35px 0 15px 0;
+  text-align: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  margin: 5px;
+  text-transform: uppercase;
+  font-style: oblique;
+  letter-spacing: 3px;
+  animation: 0.7s wiggle;
+}
+
+@keyframes wiggle {
+  0% {
+    margin-left: 0;
+  }
+  10% {
+    margin-left: 10px;
+  }
+  20% {
+    margin-left: -10px;
+  }
+  30% {
+    margin-left: 10px;
+  }
+  40% {
+    margin-left: -10px;
+  }
+  50% {
+    margin-left: 10px;
+  }
+  60% {
+    margin-left: -10px;
+  }
+  70% {
+    margin-left: 10px;
+  }
+  80% {
+    margin-left: 0px;
+  /* }
+  90% {
+    margin-left: 10px;
+  } */
+  100% {
+    margin-left: 0px;
+  }
+}

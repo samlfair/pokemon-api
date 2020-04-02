@@ -201,6 +201,7 @@ textInput.oninput = function(e) {
 };
 
 function printSearchList(array, query) {
+  let counter = 0;
   array.forEach(pokemon => {
     if (pokemon.name.includes(query.toLowerCase())) {
       listItem = document.createElement("li");
@@ -210,6 +211,12 @@ function printSearchList(array, query) {
       list.appendChild(listItem);
       pokemonH2.setAttribute("data-url", pokemon.url);
       pokemonH2.onclick = moreDeetsOnClick;
+      counter++;
     }
   });
+  if (counter == 0) {
+    noResults = document.createElement("p");
+    noResults.innerText = "No results";
+    list.appendChild(noResults);
+  }
 }
