@@ -1,14 +1,17 @@
 // Select the list container
 let list = document.getElementById("list");
+let nextPage;
 
 // LOAD INITIAL LIST
 
 // On load, get the pokemon
-const oneFiftyOne = axios
-  .get("https://pokeapi.co/api/v2/pokemon?limit=151")
+var oneFiftyOne = axios
+  .get("https://pokeapi.co/api/v2/pokemon?limit=33")
   .then(res => {
     // Call the `printList()` function
+    nextPage = res.data.next;
     printList(res.data.results);
+    // Add infinite scroll after 2s
   })
   .catch(function(error) {
     // Call an error
@@ -62,7 +65,7 @@ function moreDeetsOnClick(e) {
   }
 }
 
-//
+// RENDER CLICK RESPONSE
 
 // Once the click call has been received, add the extra info
 function addDeets(res, node) {
@@ -83,17 +86,63 @@ function addDeets(res, node) {
   node.parentNode.appendChild(abilitiesList);
 }
 
-// Get a random pokemon image
+// SCROLL LOGIC
+
+// Distance from bottom of page we want to trigger event
+let bottomTrigger = 200;
+
+// To pause scroll events while they're executing
+let addingEventListener = false;
+
+// Note: winTop + winBot = winHeight
+
+// Height of window
+winHeight = () => document.documentElement.clientHeight;
+
+// Distance from top of page to top of screen
+winTop = () => document.documentElement.getBoundingClientRect().top;
+
+// Distance from top of screen to bottom of page
+winBot = () => document.documentElement.getBoundingClientRect().bottom;
+
+// Distance from bottom of screen to bottom of page
+depth = () => winBot() - winHeight();
+
+// Is the bottom of the page close? Boolean.
+getToBottom = () => (depth() < bottomTrigger ? true : false);
+
+// Scroll event listener
+window.addEventListener("scroll", function(e) {
+  if (getToBottom() && !addingEventListener) {
+    addingEventListener = true;
+    axios
+      .get(nextPage)
+      .then(res => {
+        // Call the `printList()` function
+        console.log(nextPage);
+        nextPage = res.data.next;
+        printList(res.data.results);
+        addingEventListener = false;
+      })
+      .catch(function(error) {
+        // Call an error
+        console.log(error);
+      });
+  }
+});
+
+// HEADER IMAGES
+
+// !IMPORTANT: Add random pokemon images to `h1`s
 
 function getRandomPokemonImage(element) {
-  let pokemonNumber = Math.floor(Math.random() * 152);
+  let pokemonNumber = Math.floor(Math.random() * 151 + 1);
   const randoPokemon = axios
     .get("https://pokeapi.co/api/v2/pokemon/" + pokemonNumber + "/")
     .then(res => {
       let imageSource = res.data.sprites.front_default;
       let imageElement = document.createElement("img");
       imageElement.setAttribute("src", imageSource);
-      console.log(element);
       element.parentNode.insertBefore(imageElement, element);
     })
     .catch(function(error) {
@@ -105,7 +154,6 @@ function getRandomPokemonImage(element) {
 function decorateTitle() {
   h1Spans = document.querySelectorAll("span.title");
   h1Spans.forEach(function(element) {
-    console.log(element);
     getRandomPokemonImage(element);
   });
 }

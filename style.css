@@ -2,14 +2,14 @@ body,
 html {
   margin: 0;
   font-family: sans-serif;
-  background: #f6e652;
+  background: #fbd743;
 }
 
 h1 {
-  color: #ff9441;
+  color: #ff1f1f;
   overflow: hidden;
   white-space: nowrap;
-  font-style: oblique;
+  /* font-style: oblique; */
   width: 110%;
   margin-left: -10%;
   overflow-x: scroll;
@@ -17,15 +17,24 @@ h1 {
   display: flex;
   align-items: center;
   margin-bottom: -5px;
+  font-family: Comic Sans MS;
+}
+
+h1 span:nth-of-type(2n + 1) {
+  color: #363b81;
 }
 
 h1::-webkit-scrollbar {
   display: none;
 }
 
+h1 span {
+  padding: 10px;
+}
+
 h1 img {
   /* height: 40px; */
-  padding: 20px;
+  padding: 10px;
 }
 
 ul {
@@ -55,7 +64,7 @@ ul {
 
 .pokemon-container ul li {
   min-width: 200px;
-  border: 1px solid orange;
+  border: 2px solid #ff1f1f;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
@@ -67,7 +76,7 @@ ul {
 }
 
 .pokemon-container ul li:hover {
-  background: palegreen;
+  background: #5db9ff;
 }
 
 .pokemon-container ul li h2 {
