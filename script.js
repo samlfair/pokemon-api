@@ -29,6 +29,11 @@ function printList(array) {
     pokemonH2.innerHTML = pokemon.name;
     listItem.appendChild(pokemonH2);
     list.appendChild(listItem);
+    console.log(pokemon.name);
+    if (pokemon.name === "mew") {
+      console.log("mew");
+      list.appendChild(document.createElement("hr"));
+    }
 
     // Add a "data-url" attribute to the `h2` for the pokemon's url
     pokemonH2.setAttribute("data-url", pokemon.url);

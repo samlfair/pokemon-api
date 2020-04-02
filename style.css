@@ -83,3 +83,10 @@ ul {
   margin: 0;
   padding: 20px;
 }
+
+hr {
+  flex-basis: 100%;
+  border: none;
+  border-top: 3px double orange;
+  margin: 20px 6px;
+}
