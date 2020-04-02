@@ -90,3 +90,21 @@ hr {
   border-top: 3px double orange;
   margin: 20px 6px;
 }
+
+#main-input {
+  font-family: monospace;
+  font-size: 2em;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+  margin: 5px;
+  padding: 12px;
+  text-transform: uppercase;
+}
+
+#main-input:focus {
+  outline: none;
+  caret-color: transparent;
+  border-bottom: 4px solid lightblue;
+  margin-bottom: 1px;
+}

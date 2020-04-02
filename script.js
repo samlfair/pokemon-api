@@ -11,7 +11,6 @@ var oneFiftyOne = axios
     // Call the `printList()` function
     nextPage = res.data.next;
     printList(res.data.results);
-    // Add infinite scroll after 2s
   })
   .catch(function(error) {
     // Call an error
@@ -29,7 +28,6 @@ function printList(array) {
     pokemonH2.innerHTML = pokemon.name;
     listItem.appendChild(pokemonH2);
     list.appendChild(listItem);
-    console.log(pokemon.name);
     // add `hr` after last pokemon of each generation
     if (
       pokemon.name === "mew" ||
@@ -40,7 +38,6 @@ function printList(array) {
       pokemon.name === "volcanion" ||
       pokemon.name === "melmetal"
     ) {
-      console.log("mew");
       list.appendChild(document.createElement("hr"));
     }
 
@@ -93,7 +90,6 @@ function addDeets(res, node) {
     }
   });
   abilitiesList.innerText = "Abilities: " + abilities;
-  console.log(abilities);
   image = document.createElement("img");
   image.setAttribute("src", res.sprites.front_default);
   node.parentNode.appendChild(image);
@@ -133,7 +129,6 @@ window.addEventListener("scroll", function(e) {
       .get(nextPage)
       .then(res => {
         // Call the `printList()` function
-        console.log(nextPage);
         nextPage = res.data.next;
         printList(res.data.results);
         addingEventListener = false;
@@ -173,3 +168,48 @@ function decorateTitle() {
 }
 
 decorateTitle();
+
+// FILTER
+
+textInput = document.getElementById("main-input");
+textInput.oninput = function(e) {
+  list.innerHTML = "";
+  if (textInput.value.length > 0) {
+    axios
+      .get("https://pokeapi.co/api/v2/pokemon?limit=1000")
+      .then(res => {
+        // Call the `printList()` function
+        printSearchList(res.data.results, textInput.value);
+      })
+      .catch(function(error) {
+        // Call an error
+        console.log(error);
+      });
+  } else {
+    var oneFiftyOne = axios
+      .get("https://pokeapi.co/api/v2/pokemon?limit=33")
+      .then(res => {
+        // Call the `printList()` function
+        nextPage = res.data.next;
+        printList(res.data.results);
+      })
+      .catch(function(error) {
+        // Call an error
+        console.log(error);
+      });
+  }
+};
+
+function printSearchList(array, query) {
+  array.forEach(pokemon => {
+    if (pokemon.name.includes(query.toLowerCase())) {
+      listItem = document.createElement("li");
+      pokemonH2 = document.createElement("h2");
+      pokemonH2.innerHTML = pokemon.name;
+      listItem.appendChild(pokemonH2);
+      list.appendChild(listItem);
+      pokemonH2.setAttribute("data-url", pokemon.url);
+      pokemonH2.onclick = moreDeetsOnClick;
+    }
+  });
+}
