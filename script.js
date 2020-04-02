@@ -216,7 +216,7 @@ function printSearchList(array, query) {
   });
   if (counter == 0) {
     noResults = document.createElement("p");
-    noResults.innerText = "No results";
+    noResults.innerText = "No results.";
     list.appendChild(noResults);
   }
 }
