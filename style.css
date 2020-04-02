@@ -13,7 +13,14 @@ h1 {
   width: 110%;
   margin-left: -10%;
   overflow: hidden;
-  text-align: centerl;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+h1 img {
+  /* height: 40px; */
+  padding: 20px;
 }
 
 ul {
@@ -52,4 +59,13 @@ ul {
   text-transform: uppercase;
   background-color: white;
   border-radius: 4px;
+}
+
+.pokemon-container ul li:hover {
+  background: palegreen;
+}
+
+.pokemon-container ul li h2 {
+  margin: 0;
+  padding: 20px;
 }
