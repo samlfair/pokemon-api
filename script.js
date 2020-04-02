@@ -30,7 +30,16 @@ function printList(array) {
     listItem.appendChild(pokemonH2);
     list.appendChild(listItem);
     console.log(pokemon.name);
-    if (pokemon.name === "mew") {
+    // add `hr` after last pokemon of each generation
+    if (
+      pokemon.name === "mew" ||
+      pokemon.name === "celebi" ||
+      pokemon.name === "deoxys" ||
+      pokemon.name === "arceus" ||
+      pokemon.name === "genesect" ||
+      pokemon.name === "volcanion" ||
+      pokemon.name === "melmetal"
+    ) {
       console.log("mew");
       list.appendChild(document.createElement("hr"));
     }
